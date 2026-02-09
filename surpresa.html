@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anima sair essa semana?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            touch-action: manipulation;
+        }
+
+        h1 {
+            color: #25D366;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #sim {
+            background-color: #25D366;
+            color: white;
+        }
+
+        #nao {
+            background-color: #FF4444;
+            color: white;
+            position: relative;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .celebration {
+            display: none;
+            margin-top: 30px;
+            animation: celebrate 1.5s ease infinite;
+        }
+
+        .celebration img {
+            width: 150px;
+            height: auto;
+        }
+
+        .celebration p {
+            font-size: 1.8rem;
+            color: #25D366;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @keyframes celebrate {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Anima sair essa semana?</h1>
+
+    <div class="buttons">
+        <button id="sim" class="btn">SIM</button>
+        <button id="nao" class="btn">NÃO</button>
+    </div>
+
+    <div id="celebration" class="celebration">
+        <img src="https://cdn.pixabay.com/photo/2016/08/21/18/48/emoticon-1610518_640.png" alt="Celebração">
+        <p>Combinado!💖</p>
+    </div>
+
+    <script>
+        const btnNao = document.getElementById('nao');
+        const btnSim = document.getElementById('sim');
+        const celebration = document.getElementById('celebration');
+
+        // Faz o botão NÃO fugir quando o mouse se aproxima
+        btnNao.addEventListener('mouseover', function () {
+            moveButton();
+        });
+
+        // Para dispositivos touch
+        btnNao.addEventListener('touchstart', function (e) {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - btnNao.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNao.offsetHeight);
+
+            btnNao.style.position = 'absolute';
+            btnNao.style.left = x + 'px';
+            btnNao.style.top = y + 'px';
+            btnNao.style.transition = 'all 0.3s';
+        }
+
+        btnSim.addEventListener('click', function () {
+            celebration.style.display = 'block';
+            document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('h1').style.marginBottom = '20px';
+        });
+    </script>
+</body>
+
+</html>
